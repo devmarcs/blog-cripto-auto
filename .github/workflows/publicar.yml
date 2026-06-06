@@ -1,8 +1,8 @@
-name: Publicar Post Diário
+name: Publicar Post Diario
 
 on:
   schedule:
-    - cron: '0 11 * * *'  # 08h horário de Brasília (UTC-3)
+    - cron: '0 11 * * *'  # 08h horario de Brasilia (UTC-3)
   workflow_dispatch:
 
 jobs:
