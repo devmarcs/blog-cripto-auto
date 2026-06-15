@@ -5,13 +5,17 @@ Uso:
 """
 import sys
 from blog_agent import gerar_conteudo_post
-from blogger_client import publicar_post
+from blogger_client import publicar_post, post_ja_publicado_hoje
 
 
 def main():
     dry_run = "--dry-run" in sys.argv
 
     try:
+        if not dry_run and post_ja_publicado_hoje():
+            print("Post de hoje já foi publicado. Encerrando sem criar duplicata.")
+            return
+
         post = gerar_conteudo_post()
 
         titulo = post["title"]

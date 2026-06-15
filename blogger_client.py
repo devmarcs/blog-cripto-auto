@@ -1,4 +1,5 @@
 import os
+from datetime import datetime, timezone
 from googleapiclient.discovery import build
 from google.oauth2.credentials import Credentials
 from google.auth.transport.requests import Request
@@ -29,6 +30,30 @@ def _obter_credenciais():
             )
 
     return creds
+
+
+def post_ja_publicado_hoje() -> bool:
+    """Verifica se já existe um post publicado hoje no Blogger."""
+    blog_id = os.getenv("BLOGGER_BLOG_ID")
+    if not blog_id:
+        raise ValueError("BLOGGER_BLOG_ID não definido no .env")
+
+    creds = _obter_credenciais()
+    service = build("blogger", "v3", credentials=creds)
+
+    hoje = datetime.now(timezone.utc).date()
+    inicio = datetime(hoje.year, hoje.month, hoje.day, 0, 0, 0, tzinfo=timezone.utc).isoformat()
+    fim = datetime(hoje.year, hoje.month, hoje.day, 23, 59, 59, tzinfo=timezone.utc).isoformat()
+
+    resultado = service.posts().list(
+        blogId=blog_id,
+        startDate=inicio,
+        endDate=fim,
+        maxResults=1,
+        status="live",
+    ).execute()
+
+    return len(resultado.get("items", [])) > 0
 
 
 def publicar_post(titulo: str, conteudo_html: str, labels: list = None) -> str:
