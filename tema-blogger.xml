@@ -708,91 +708,11 @@
   <main>
     <b:section id='main' class='main' name='Main' showaddelement='no'>
       <b:widget id='Blog1' locked='true' title='Posts do Blog' type='Blog' version='2'>
-        <b:widget-settings>
-          <b:widget-setting name='overrideTypes'>true</b:widget-setting>
-        </b:widget-settings>
-
         <b:includable id='main'>
 
-          <!-- ══ PÁGINA INICIAL (lista de posts) ══ -->
-          <b:if cond='data:blog.pageType == &quot;index&quot;'>
-            <div class='wrap'>
-
-              <!-- Hero -->
-              <section class='hero'>
-                <div class='hero-pill'>Criptomoedas &amp; Finan&#231;as Digitais</div>
-                <h1 class='hero-h1'>
-                  An&#225;lises <em>cripto</em><br/>todo dia.
-                </h1>
-                <p class='hero-sub'>
-                  Not&#237;cias, tend&#234;ncias e an&#225;lises do mercado de criptomoedas em portugu&#234;s, publicadas automaticamente.
-                </p>
-                <div class='hero-stats'>
-                  <div>
-                    <div class='stat-val'><span>24</span>h</div>
-                    <div class='stat-lbl'>Ciclo de publica&#231;&#227;o</div>
-                  </div>
-                  <div>
-                    <div class='stat-val'><span>30</span>+</div>
-                    <div class='stat-lbl'>Temas cobertos</div>
-                  </div>
-                  <div>
-                    <div class='stat-val'><span>100</span>%</div>
-                    <div class='stat-lbl'>Em portugu&#234;s</div>
-                  </div>
-                </div>
-              </section>
-
-              <!-- Cabeçalho da seção -->
-              <div class='sec-hd'>
-                <span class='sec-hd-title'>&#218;ltimas publica&#231;&#245;es</span>
-                <div class='sec-hd-line'/>
-                <span class='sec-hd-tag'>// di&#225;rio</span>
-              </div>
-
-              <!-- Grid de posts -->
-              <div class='post-grid'>
-                <b:loop values='data:posts' var='post'>
-                  <article class='post-card'>
-
-                    <b:if cond='data:post.labels'>
-                      <div class='card-tags'>
-                        <b:loop values='data:post.labels' var='label'>
-                          <a class='ctag' expr:href='data:label.url'><data:label.name/></a>
-                        </b:loop>
-                      </div>
-                    </b:if>
-
-                    <h2 class='card-title'>
-                      <a expr:href='data:post.url'><data:post.title/></a>
-                    </h2>
-
-                    <p class='card-exc'><data:post.snippet/></p>
-
-                    <div class='card-foot'>
-                      <time class='card-date'><data:post.date/></time>
-                      <a class='card-cta' expr:href='data:post.url'>Ler artigo &#8594;</a>
-                    </div>
-
-                  </article>
-                </b:loop>
-              </div>
-
-              <!-- Paginação -->
-              <div class='pager'>
-                <b:if cond='data:newerPageUrl'>
-                  <a class='pager-btn' expr:href='data:newerPageUrl'>&#8592; Mais recentes</a>
-                </b:if>
-                <b:if cond='data:olderPageUrl'>
-                  <a class='pager-btn' expr:href='data:olderPageUrl'>Mais antigos &#8594;</a>
-                </b:if>
-              </div>
-
-            </div>
-          </b:if>
-
-          <!-- ══ PÁGINA DE POST INDIVIDUAL ══ -->
           <b:if cond='data:blog.pageType == &quot;item&quot;'>
+
+            <!-- ══ POST INDIVIDUAL ══ -->
             <div class='wrap'>
               <b:loop values='data:posts' var='post'>
                 <article class='post-single'>
@@ -839,6 +759,80 @@
                 </article>
               </b:loop>
             </div>
+
+          <b:else/>
+
+            <!-- ══ HOME / LISTAGEM (index, archive, labels) ══ -->
+            <div class='wrap'>
+
+              <section class='hero'>
+                <div class='hero-pill'>Criptomoedas &amp; Finan&#231;as Digitais</div>
+                <h1 class='hero-h1'>
+                  An&#225;lises <em>cripto</em><br/>todo dia.
+                </h1>
+                <p class='hero-sub'>
+                  Not&#237;cias, tend&#234;ncias e an&#225;lises do mercado de criptomoedas em portugu&#234;s, publicadas automaticamente.
+                </p>
+                <div class='hero-stats'>
+                  <div>
+                    <div class='stat-val'><span>24</span>h</div>
+                    <div class='stat-lbl'>Ciclo de publica&#231;&#227;o</div>
+                  </div>
+                  <div>
+                    <div class='stat-val'><span>30</span>+</div>
+                    <div class='stat-lbl'>Temas cobertos</div>
+                  </div>
+                  <div>
+                    <div class='stat-val'><span>100</span>%</div>
+                    <div class='stat-lbl'>Em portugu&#234;s</div>
+                  </div>
+                </div>
+              </section>
+
+              <div class='sec-hd'>
+                <span class='sec-hd-title'>&#218;ltimas publica&#231;&#245;es</span>
+                <div class='sec-hd-line'/>
+                <span class='sec-hd-tag'>// di&#225;rio</span>
+              </div>
+
+              <div class='post-grid'>
+                <b:loop values='data:posts' var='post'>
+                  <article class='post-card'>
+
+                    <b:if cond='data:post.labels'>
+                      <div class='card-tags'>
+                        <b:loop values='data:post.labels' var='label'>
+                          <a class='ctag' expr:href='data:label.url'><data:label.name/></a>
+                        </b:loop>
+                      </div>
+                    </b:if>
+
+                    <h2 class='card-title'>
+                      <a expr:href='data:post.url'><data:post.title/></a>
+                    </h2>
+
+                    <p class='card-exc'><data:post.snippet/></p>
+
+                    <div class='card-foot'>
+                      <time class='card-date'><data:post.date/></time>
+                      <a class='card-cta' expr:href='data:post.url'>Ler artigo &#8594;</a>
+                    </div>
+
+                  </article>
+                </b:loop>
+              </div>
+
+              <div class='pager'>
+                <b:if cond='data:newerPageUrl'>
+                  <a class='pager-btn' expr:href='data:newerPageUrl'>&#8592; Mais recentes</a>
+                </b:if>
+                <b:if cond='data:olderPageUrl'>
+                  <a class='pager-btn' expr:href='data:olderPageUrl'>Mais antigos &#8594;</a>
+                </b:if>
+              </div>
+
+            </div>
+
           </b:if>
 
         </b:includable>
