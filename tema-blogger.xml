@@ -70,7 +70,6 @@
 
     /* Resets do Blogger */
     .widget { margin: 0 !important; padding: 0 !important; }
-    .date-outer, .date-header, .post-footer,
     .blog-feeds, .status-msg-wrap { display: none !important; }
 
     /* ================================================================
@@ -712,7 +711,7 @@
           <b:widget-setting name='overrideTypes'>true</b:widget-setting>
         </b:widget-settings>
 
-        <b:includable id='main'>
+        <b:includable id='main' var='top'>
           <div class='wrap'>
 
             <div class='post-grid'>
