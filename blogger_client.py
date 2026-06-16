@@ -3,7 +3,6 @@ from datetime import datetime, timezone
 from googleapiclient.discovery import build
 from google.oauth2.credentials import Credentials
 from google.auth.transport.requests import Request
-from google_auth_oauthlib.flow import InstalledAppFlow
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -42,15 +41,14 @@ def post_ja_publicado_hoje() -> bool:
     service = build("blogger", "v3", credentials=creds)
 
     hoje = datetime.now(timezone.utc).date()
-    inicio = datetime(hoje.year, hoje.month, hoje.day, 0, 0, 0, tzinfo=timezone.utc).isoformat()
-    fim = datetime(hoje.year, hoje.month, hoje.day, 23, 59, 59, tzinfo=timezone.utc).isoformat()
+    inicio = f"{hoje.isoformat()}T00:00:00Z"
+    fim = f"{hoje.isoformat()}T23:59:59Z"
 
     resultado = service.posts().list(
         blogId=blog_id,
         startDate=inicio,
         endDate=fim,
         maxResults=1,
-        status="live",
     ).execute()
 
     return len(resultado.get("items", [])) > 0

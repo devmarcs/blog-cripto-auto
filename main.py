@@ -12,9 +12,13 @@ def main():
     dry_run = "--dry-run" in sys.argv
 
     try:
-        if not dry_run and post_ja_publicado_hoje():
-            print("Post de hoje já foi publicado. Encerrando sem criar duplicata.")
-            return
+        if not dry_run:
+            try:
+                if post_ja_publicado_hoje():
+                    print("Post de hoje já foi publicado. Encerrando sem criar duplicata.")
+                    return
+            except Exception as check_err:
+                print(f"Aviso: falha ao verificar posts do dia ({check_err}). Prosseguindo com publicação.")
 
         post = gerar_conteudo_post()
 
