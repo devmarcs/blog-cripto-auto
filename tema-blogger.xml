@@ -708,134 +708,55 @@
   <main>
     <b:section id='main' class='main' name='Main' showaddelement='no'>
       <b:widget id='Blog1' locked='true' title='Posts do Blog' type='Blog' version='2'>
+        <b:widget-settings>
+          <b:widget-setting name='overrideTypes'>true</b:widget-setting>
+        </b:widget-settings>
+
         <b:includable id='main'>
+          <div class='wrap'>
 
-          <b:if cond='data:blog.pageType == &quot;item&quot;'>
-
-            <!-- ══ POST INDIVIDUAL ══ -->
-            <div class='wrap'>
+            <div class='post-grid'>
               <b:loop values='data:posts' var='post'>
-                <article class='post-single'>
-
-                  <a class='post-back' expr:href='data:blog.homepageUrl'>
-                    &#8592; Voltar ao in&#237;cio
-                  </a>
+                <article class='post-card'>
 
                   <b:if cond='data:post.labels'>
-                    <div class='post-tags'>
+                    <div class='card-tags'>
                       <b:loop values='data:post.labels' var='label'>
                         <a class='ctag' expr:href='data:label.url'><data:label.name/></a>
                       </b:loop>
                     </div>
                   </b:if>
 
-                  <h1 class='post-h1'><data:post.title/></h1>
+                  <h2 class='card-title'>
+                    <a expr:href='data:post.url'><data:post.title/></a>
+                  </h2>
 
-                  <div class='post-meta'>
-                    <span class='meta-item'>
-                      <svg width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>
-                        <rect x='3' y='4' width='18' height='18' rx='2'/>
-                        <line x1='16' y1='2' x2='16' y2='6'/>
-                        <line x1='8' y1='2' x2='8' y2='6'/>
-                        <line x1='3' y1='10' x2='21' y2='10'/>
-                      </svg>
-                      <data:post.date/>
-                    </span>
-                    <span class='meta-item'>
-                      <svg width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>
-                        <path d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/>
-                        <circle cx='12' cy='7' r='4'/>
-                      </svg>
-                      <data:post.author/>
-                    </span>
-                  </div>
+                  <p class='card-exc'><data:post.snippet/></p>
 
-                  <hr class='post-rule'/>
-
-                  <div class='post-body'>
-                    <data:post.body/>
+                  <div class='card-foot'>
+                    <time class='card-date'><data:post.date/></time>
+                    <a class='card-cta' expr:href='data:post.url'>Ler artigo &#8594;</a>
                   </div>
 
                 </article>
               </b:loop>
             </div>
 
-          <b:else/>
-
-            <!-- ══ HOME / LISTAGEM (index, archive, labels) ══ -->
-            <div class='wrap'>
-
-              <section class='hero'>
-                <div class='hero-pill'>Criptomoedas &amp; Finan&#231;as Digitais</div>
-                <h1 class='hero-h1'>
-                  An&#225;lises <em>cripto</em><br/>todo dia.
-                </h1>
-                <p class='hero-sub'>
-                  Not&#237;cias, tend&#234;ncias e an&#225;lises do mercado de criptomoedas em portugu&#234;s, publicadas automaticamente.
-                </p>
-                <div class='hero-stats'>
-                  <div>
-                    <div class='stat-val'><span>24</span>h</div>
-                    <div class='stat-lbl'>Ciclo de publica&#231;&#227;o</div>
-                  </div>
-                  <div>
-                    <div class='stat-val'><span>30</span>+</div>
-                    <div class='stat-lbl'>Temas cobertos</div>
-                  </div>
-                  <div>
-                    <div class='stat-val'><span>100</span>%</div>
-                    <div class='stat-lbl'>Em portugu&#234;s</div>
-                  </div>
-                </div>
-              </section>
-
-              <div class='sec-hd'>
-                <span class='sec-hd-title'>&#218;ltimas publica&#231;&#245;es</span>
-                <div class='sec-hd-line'/>
-                <span class='sec-hd-tag'>// di&#225;rio</span>
-              </div>
-
-              <div class='post-grid'>
-                <b:loop values='data:posts' var='post'>
-                  <article class='post-card'>
-
-                    <b:if cond='data:post.labels'>
-                      <div class='card-tags'>
-                        <b:loop values='data:post.labels' var='label'>
-                          <a class='ctag' expr:href='data:label.url'><data:label.name/></a>
-                        </b:loop>
-                      </div>
-                    </b:if>
-
-                    <h2 class='card-title'>
-                      <a expr:href='data:post.url'><data:post.title/></a>
-                    </h2>
-
-                    <p class='card-exc'><data:post.snippet/></p>
-
-                    <div class='card-foot'>
-                      <time class='card-date'><data:post.date/></time>
-                      <a class='card-cta' expr:href='data:post.url'>Ler artigo &#8594;</a>
-                    </div>
-
-                  </article>
-                </b:loop>
-              </div>
-
-              <div class='pager'>
-                <b:if cond='data:newerPageUrl'>
-                  <a class='pager-btn' expr:href='data:newerPageUrl'>&#8592; Mais recentes</a>
-                </b:if>
-                <b:if cond='data:olderPageUrl'>
-                  <a class='pager-btn' expr:href='data:olderPageUrl'>Mais antigos &#8594;</a>
-                </b:if>
-              </div>
-
+            <div class='pager'>
+              <b:if cond='data:newerPageUrl'>
+                <a class='pager-btn' expr:href='data:newerPageUrl'>&#8592; Mais recentes</a>
+              </b:if>
+              <b:if cond='data:olderPageUrl'>
+                <a class='pager-btn' expr:href='data:olderPageUrl'>Mais antigos &#8594;</a>
+              </b:if>
             </div>
 
-          </b:if>
-
+          </div>
         </b:includable>
+
+        <b:includable id='postQuickEdit' var='post'/>
+        <b:includable id='backlinks' var='post'/>
+        <b:includable id='comments' var='post'/>
 
       </b:widget>
     </b:section>
