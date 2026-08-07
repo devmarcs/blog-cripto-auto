@@ -13,241 +13,281 @@ TEMAS = [
     {
         "nome": "Bitcoin - análise de preço e mercado",
         "queries": [
-            "Bitcoin preço hoje análise 2026",
-            "BTC valorização tendência mercado 2026",
-            "Bitcoin análise técnica resistência suporte 2026",
+            "Bitcoin preço hoje análise",
+            "BTC valorização tendência mercado",
+            "Bitcoin análise técnica resistência suporte",
         ],
     },
     {
         "nome": "Ethereum - atualizações e staking",
         "queries": [
-            "Ethereum atualização novidades 2026",
-            "ETH staking rendimento validadores 2026",
-            "Ethereum layer 2 taxas escalabilidade 2026",
+            "Ethereum atualização novidades",
+            "ETH staking rendimento validadores",
+            "Ethereum layer 2 taxas escalabilidade",
         ],
     },
     {
         "nome": "DeFi - finanças descentralizadas",
         "queries": [
-            "DeFi finanças descentralizadas tendências 2026",
-            "yield farming liquidez protocolos DeFi 2026",
-            "melhores plataformas DeFi rendimento 2026",
+            "DeFi finanças descentralizadas tendências",
+            "yield farming liquidez protocolos DeFi",
+            "melhores plataformas DeFi rendimento",
         ],
     },
     {
         "nome": "Altcoins em destaque",
         "queries": [
-            "altcoins em alta mercado cripto 2026",
-            "melhores criptomoedas para investir 2026",
-            "altseason tokens emergentes 2026",
+            "altcoins em alta mercado cripto",
+            "melhores criptomoedas para investir",
+            "altseason tokens emergentes",
         ],
     },
     {
         "nome": "Regulamentação cripto no Brasil e no mundo",
         "queries": [
-            "regulamentação criptomoedas Brasil 2026",
-            "legislação cripto governo SEC aprovação 2026",
-            "bitcoin impostos leis regulação 2026",
+            "regulamentação criptomoedas Brasil",
+            "legislação cripto governo SEC aprovação",
+            "bitcoin impostos leis regulação",
         ],
     },
     {
         "nome": "Staking e renda passiva com cripto",
         "queries": [
-            "staking criptomoedas rendimento passivo 2026",
-            "melhores criptos para staking yield 2026",
-            "como fazer staking Ethereum Cardano Solana 2026",
+            "staking criptomoedas rendimento passivo",
+            "melhores criptos para staking yield",
+            "como fazer staking Ethereum Cardano Solana",
         ],
     },
     {
         "nome": "Segurança: hacks, golpes e como se proteger",
         "queries": [
-            "hacks golpes criptomoedas exchange 2026",
-            "roubo cripto phishing segurança 2026",
-            "como proteger carteira Bitcoin hardware wallet 2026",
+            "hacks golpes criptomoedas exchange",
+            "roubo cripto phishing segurança",
+            "como proteger carteira Bitcoin hardware wallet",
         ],
     },
     {
         "nome": "Solana - ecossistema e desempenho",
         "queries": [
-            "Solana SOL notícias preço 2026",
-            "Solana DeFi NFT aplicações ecossistema 2026",
-            "Solana velocidade taxas comparação Ethereum 2026",
+            "Solana SOL notícias preço",
+            "Solana DeFi NFT aplicações ecossistema",
+            "Solana velocidade taxas comparação Ethereum",
         ],
     },
     {
         "nome": "Bitcoin ETF e investidores institucionais",
         "queries": [
-            "Bitcoin ETF fluxo investidores institucionais 2026",
-            "empresas comprando Bitcoin reserva corporativa 2026",
-            "fundos hedge Bitcoin Wall Street 2026",
+            "Bitcoin ETF fluxo investidores institucionais",
+            "empresas comprando Bitcoin reserva corporativa",
+            "fundos hedge Bitcoin Wall Street",
         ],
     },
     {
         "nome": "Stablecoins e dólar digital",
         "queries": [
-            "stablecoins USDT USDC mercado 2026",
-            "stablecoin regulamentação reservas laudo 2026",
-            "CBDC moeda digital banco central 2026",
+            "stablecoins USDT USDC mercado",
+            "stablecoin regulamentação reservas laudo",
+            "CBDC moeda digital banco central",
         ],
     },
     {
         "nome": "Cripto e tributação no Brasil",
         "queries": [
-            "imposto renda criptomoedas Brasil Receita Federal 2026",
-            "como declarar bitcoin ganho capital 2026",
-            "tributação cripto regras obrigações 2026",
+            "imposto renda criptomoedas Brasil Receita Federal",
+            "como declarar bitcoin ganho capital",
+            "tributação cripto regras obrigações",
         ],
     },
     {
         "nome": "Web3 e o futuro da internet",
         "queries": [
-            "Web3 internet descentralizada aplicações 2026",
-            "dApps Web3 casos de uso 2026",
-            "identidade digital blockchain Web3 2026",
+            "Web3 internet descentralizada aplicações",
+            "dApps Web3 casos de uso",
+            "identidade digital blockchain Web3",
         ],
     },
     {
         "nome": "Adoção cripto por empresas e países",
         "queries": [
-            "empresas adotando bitcoin pagamento 2026",
-            "países legalizando criptomoedas moeda oficial 2026",
-            "adoção cripto varejo comércio 2026",
+            "empresas adotando bitcoin pagamento",
+            "países legalizando criptomoedas moeda oficial",
+            "adoção cripto varejo comércio",
         ],
     },
     {
         "nome": "Carteiras cripto: como guardar com segurança",
         "queries": [
-            "carteira hardware cripto Ledger Trezor 2026",
-            "cold wallet hot wallet diferença segurança 2026",
-            "melhor carteira criptomoeda iniciantes 2026",
+            "carteira hardware cripto Ledger Trezor",
+            "cold wallet hot wallet diferença segurança",
+            "melhor carteira criptomoeda iniciantes",
         ],
     },
     {
         "nome": "Mineração de Bitcoin e energia",
         "queries": [
-            "mineração Bitcoin energia renovável rentabilidade 2026",
-            "mineradores Bitcoin hashrate dificuldade 2026",
-            "mineração cripto consumo energia sustentabilidade 2026",
+            "mineração Bitcoin energia renovável rentabilidade",
+            "mineradores Bitcoin hashrate dificuldade",
+            "mineração cripto consumo energia sustentabilidade",
         ],
     },
     {
         "nome": "Exchanges: mercado e comparação",
         "queries": [
-            "Binance Coinbase Kraken notícias exchange 2026",
-            "exchange criptomoedas volume taxa 2026",
-            "melhores exchanges para comprar cripto Brasil 2026",
+            "Binance Coinbase Kraken notícias exchange",
+            "exchange criptomoedas volume taxa",
+            "melhores exchanges para comprar cripto Brasil",
         ],
     },
     {
         "nome": "Ripple XRP e pagamentos internacionais",
         "queries": [
-            "Ripple XRP notícias parceria bancos 2026",
-            "XRP pagamentos internacionais remessas 2026",
-            "XRP preço análise regulação 2026",
+            "Ripple XRP notícias parceria bancos",
+            "XRP pagamentos internacionais remessas",
+            "XRP preço análise regulação",
         ],
     },
     {
         "nome": "GameFi e play-to-earn",
         "queries": [
-            "GameFi play-to-earn jogos blockchain 2026",
-            "jogos NFT ganhar criptomoeda 2026",
-            "melhores jogos cripto blockchain 2026",
+            "GameFi play-to-earn jogos blockchain",
+            "jogos NFT ganhar criptomoeda",
+            "melhores jogos cripto blockchain",
         ],
     },
     {
         "nome": "Cardano - contratos inteligentes e desenvolvimento",
         "queries": [
-            "Cardano ADA atualização desenvolvimento 2026",
-            "Cardano contratos inteligentes DeFi ecossistema 2026",
-            "ADA preço análise adoção 2026",
+            "Cardano ADA atualização desenvolvimento",
+            "Cardano contratos inteligentes DeFi ecossistema",
+            "ADA preço análise adoção",
         ],
     },
     {
         "nome": "Bitcoin como reserva de valor e inflação",
         "queries": [
-            "Bitcoin reserva de valor inflação proteção 2026",
-            "Bitcoin ouro digital economia 2026",
-            "macro economia Bitcoin ciclo halving 2026",
+            "Bitcoin reserva de valor inflação proteção",
+            "Bitcoin ouro digital economia",
+            "macro economia Bitcoin ciclo halving",
         ],
     },
     {
         "nome": "Layer 2 e escalabilidade blockchain",
         "queries": [
-            "layer 2 Ethereum Arbitrum Optimism Polygon 2026",
-            "soluções escalabilidade blockchain transações baratas 2026",
-            "Lightning Network Bitcoin micropagamentos 2026",
+            "layer 2 Ethereum Arbitrum Optimism Polygon",
+            "soluções escalabilidade blockchain transações baratas",
+            "Lightning Network Bitcoin micropagamentos",
         ],
     },
     {
         "nome": "Avalanche e blockchains de alta performance",
         "queries": [
-            "Avalanche AVAX notícias ecossistema 2026",
-            "blockchains rápidas baixo custo EVM compatível 2026",
-            "AVAX DeFi NFT subnet 2026",
+            "Avalanche AVAX notícias ecossistema",
+            "blockchains rápidas baixo custo EVM compatível",
+            "AVAX DeFi NFT subnet",
         ],
     },
     {
         "nome": "DAOs e governança descentralizada",
         "queries": [
-            "DAO governança descentralizada votação 2026",
-            "tokens governança protocolo 2026",
-            "maiores DAOs cripto projetos 2026",
+            "DAO governança descentralizada votação",
+            "tokens governança protocolo",
+            "maiores DAOs cripto projetos",
         ],
     },
     {
         "nome": "Cripto e inteligência artificial",
         "queries": [
-            "criptomoedas inteligência artificial IA tokens 2026",
-            "projetos cripto IA blockchain 2026",
-            "agentes IA Web3 descentralizado 2026",
+            "criptomoedas inteligência artificial IA tokens",
+            "projetos cripto IA blockchain",
+            "agentes IA Web3 descentralizado",
         ],
     },
     {
         "nome": "Bitcoin halving e ciclos de mercado",
         "queries": [
-            "Bitcoin halving impacto histórico preço 2026",
-            "bull market bear market cripto ciclo 2026",
-            "pós-halving altseason análise 2026",
+            "Bitcoin halving impacto histórico preço",
+            "bull market bear market cripto ciclo",
+            "pós-halving altseason análise",
         ],
     },
     {
         "nome": "NFTs: mercado e casos de uso",
         "queries": [
-            "NFT mercado volume notícias 2026",
-            "NFT arte digital coleções tokens 2026",
-            "NFT utilidade jogos música ingressos 2026",
+            "NFT mercado volume notícias",
+            "NFT arte digital coleções tokens",
+            "NFT utilidade jogos música ingressos",
         ],
     },
     {
         "nome": "Polkadot e interoperabilidade entre blockchains",
         "queries": [
-            "Polkadot DOT parachain interoperabilidade 2026",
-            "bridge blockchain cross-chain transferência 2026",
-            "DOT ecossistema projetos 2026",
+            "Polkadot DOT parachain interoperabilidade",
+            "bridge blockchain cross-chain transferência",
+            "DOT ecossistema projetos",
         ],
     },
     {
         "nome": "Cripto para iniciantes: primeiros passos",
         "queries": [
-            "como comprar bitcoin iniciantes passo a passo 2026",
-            "primeiros passos criptomoedas investimento seguro 2026",
-            "guia cripto iniciante carteira exchange Brasil 2026",
+            "como comprar bitcoin iniciantes passo a passo",
+            "primeiros passos criptomoedas investimento seguro",
+            "guia cripto iniciante carteira exchange Brasil",
         ],
     },
     {
         "nome": "Cripto e bancos: o futuro das finanças",
         "queries": [
-            "bancos criptomoedas integração serviços 2026",
-            "banco digital crypto custodia 2026",
-            "sistema bancário tradicional versus DeFi 2026",
+            "bancos criptomoedas integração serviços",
+            "banco digital crypto custodia",
+            "sistema bancário tradicional versus DeFi",
         ],
     },
     {
         "nome": "Análise de mercado: capitalização e dominância",
         "queries": [
-            "capitalização total mercado cripto dominância 2026",
-            "Bitcoin dominância altcoins distribuição 2026",
-            "análise mercado cripto semana 2026",
+            "capitalização total mercado cripto dominância",
+            "Bitcoin dominância altcoins distribuição",
+            "análise mercado cripto semana",
+        ],
+    },
+    {
+        "nome": "Bolsa de valores - Ibovespa e mercado brasileiro",
+        "queries": [
+            "Ibovespa hoje análise fechamento",
+            "bolsa de valores Brasil B3 tendência",
+            "Ibovespa alta baixa investidores",
+        ],
+    },
+    {
+        "nome": "Ações brasileiras - análise e recomendações",
+        "queries": [
+            "melhores ações para investir Brasil",
+            "ações B3 dividendos recomendação analistas",
+            "blue chips Brasil análise fundamentalista",
+        ],
+    },
+    {
+        "nome": "Ações internacionais e mercado americano",
+        "queries": [
+            "Wall Street S&P 500 Nasdaq hoje",
+            "melhores ações americanas para investir",
+            "mercado americano bolsa Nova York tendência",
+        ],
+    },
+    {
+        "nome": "Fundos Imobiliários (FIIs) - renda passiva",
+        "queries": [
+            "fundos imobiliários FIIs melhores",
+            "FII dividendos rendimento mensal",
+            "fundos imobiliários tijolo papel comparação",
+        ],
+    },
+    {
+        "nome": "Dividendos: ações e FIIs pagadores de renda",
+        "queries": [
+            "ações pagadoras de dividendos Brasil",
+            "FIIs e ações dividend yield comparação",
+            "carteira de dividendos renda passiva",
         ],
     },
 ]
@@ -267,7 +307,7 @@ def pesquisar_noticias(tema: dict) -> str:
     with DDGS() as ddgs:
         for query in tema["queries"]:
             try:
-                hits = list(ddgs.text(query, max_results=3))
+                hits = list(ddgs.text(query, max_results=3, timelimit="y"))
                 for h in hits:
                     resultados.append(f"- {h['title']}: {h['body']}")
             except Exception:
