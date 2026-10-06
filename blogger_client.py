@@ -54,6 +54,29 @@ def post_ja_publicado_hoje() -> bool:
     return len(resultado.get("items", [])) > 0
 
 
+def buscar_posts_relacionados(termo: str, limite: int = 3) -> list:
+    """Busca posts já publicados sobre o termo. Retorna lista de {"title", "url"}."""
+    blog_id = os.getenv("BLOGGER_BLOG_ID")
+    if not blog_id:
+        raise ValueError("BLOGGER_BLOG_ID não definido no .env")
+
+    creds = _obter_credenciais()
+    service = build("blogger", "v3", credentials=creds)
+
+    resultado = service.posts().search(
+        blogId=blog_id,
+        q=termo,
+        fetchBodies=False,
+        orderBy="PUBLISHED",
+    ).execute()
+
+    return [
+        {"title": p["title"], "url": p["url"]}
+        for p in resultado.get("items", [])[:limite]
+        if p.get("title") and p.get("url")
+    ]
+
+
 def publicar_post(titulo: str, conteudo_html: str, labels: list = None) -> str:
     """Publica um post no Blogger e retorna a URL do post."""
     blog_id = os.getenv("BLOGGER_BLOG_ID")

@@ -5,7 +5,7 @@ Uso:
 """
 import sys
 from blog_agent import gerar_conteudo_post
-from blogger_client import publicar_post, post_ja_publicado_hoje
+from blogger_client import publicar_post, post_ja_publicado_hoje, buscar_posts_relacionados
 
 
 def main():
@@ -20,7 +20,7 @@ def main():
             except Exception as check_err:
                 print(f"Aviso: falha ao verificar posts do dia ({check_err}). Prosseguindo com publicação.")
 
-        post = gerar_conteudo_post()
+        post = gerar_conteudo_post(buscar_posts_relacionados)
 
         titulo = post["title"]
         conteudo = post["content"]
@@ -34,6 +34,8 @@ def main():
             print("\n--- MODO DRY-RUN: post não publicado ---")
             print("\nPRÉVIA DO CONTEÚDO:")
             print(conteudo[:500] + "...")
+            print("\nRODAPÉ (fim do conteúdo):")
+            print(conteudo[-1500:])
             return
 
         print("\nPublicando no Blogger...")
