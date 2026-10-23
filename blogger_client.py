@@ -98,3 +98,30 @@ def publicar_post(titulo: str, conteudo_html: str, labels: list = None) -> str:
     post = service.posts().insert(blogId=blog_id, body=corpo, isDraft=False).execute()
 
     return post.get("url", "URL não disponível")
+
+
+def listar_posts(limite: int = 5) -> list:
+    """Lista os posts publicados mais recentes. Retorna lista de {"title", "url", "content", "labels"}."""
+    blog_id = os.getenv("BLOGGER_BLOG_ID")
+    if not blog_id:
+        raise ValueError("BLOGGER_BLOG_ID não definido no .env")
+
+    creds = _obter_credenciais()
+    service = build("blogger", "v3", credentials=creds)
+
+    resultado = service.posts().list(
+        blogId=blog_id,
+        maxResults=limite,
+        orderBy="PUBLISHED",
+        fetchBodies=True,
+    ).execute()
+
+    return [
+        {
+            "title": p["title"],
+            "url": p.get("url", ""),
+            "content": p.get("content", ""),
+            "labels": p.get("labels", []),
+        }
+        for p in resultado.get("items", [])
+    ]
