@@ -28,10 +28,16 @@ FORMATOS = {
     "longo": {
         "descricao": "vídeo horizontal 16:9, 4 a 6 minutos (cerca de 600 a 800 palavras de narração)",
         "cenas": "6 a 9 cenas",
+        "por_cena": "70 a 110 palavras de narração por cena",
+        "min_palavras": 550,
+        "proporcao": "16:9 (1920x1080)",
     },
     "short": {
         "descricao": "vídeo vertical 9:16 para Shorts, no máximo 55 segundos (cerca de 120 a 140 palavras de narração)",
         "cenas": "4 a 6 cenas rápidas",
+        "por_cena": "20 a 35 palavras de narração por cena",
+        "min_palavras": 110,
+        "proporcao": "9:16 vertical (1080x1920)",
     },
 }
 
@@ -51,7 +57,7 @@ def gerar_roteiro(post: dict, formato: str) -> dict:
 
     prompt = f"""Transforme o post de blog abaixo em um roteiro de vídeo para YouTube em português brasileiro.
 
-FORMATO: {fmt['descricao']}, com {fmt['cenas']}.
+FORMATO: {fmt['descricao']}, com {fmt['cenas']} e {fmt['por_cena']}. Respeite o total de palavras: a narração é o que define a duração do vídeo.
 
 POST:
 Título: {post['title']}
@@ -62,29 +68,78 @@ REGRAS:
 - Gancho forte nos primeiros 3 segundos; fechamento com chamada para inscrição/comentário
 - Narração em linguagem falada, frases curtas, sem jargão não explicado
 - Use apenas dados presentes no post; não invente números
-- Sem promessa de ganho e sem recomendação de investimento; inclua aviso "conteúdo informativo" na última cena
+- Sem promessa de ganho e sem recomendação de investimento (nada de "é o momento ideal para entrar/comprar"); inclua aviso "conteúdo informativo" na última cena
 - Cada cena descreve o visual de forma concreta (gráfico, texto animado, ícones, transição), pensando em animação gerada por design e/ou edição no DaVinci Resolve
 
 Retorne JSON com exatamente estes campos:
 - "titulo_youtube": título (até 70 caracteres, atrativo, sem clickbait enganoso)
 - "descricao_youtube": descrição de 2-3 linhas, com marcador [LINK_DO_POST] e aviso de conteúdo informativo
 - "tags": lista de 8-12 tags
-- "cenas": lista de objetos com "numero", "duracao_seg", "narracao", "visual", "texto_na_tela"
-- "prompt_claude_design": um prompt único e autocontido, em português, para colar no Claude Design, pedindo a criação do vídeo animado completo: formato/proporção, duração, paleta e estilo (fintech/cripto, escuro, destaque dourado #f0b90b), tipografia, e a lista de cenas com narração, visuais, textos na tela e transições"""
+- "cenas": lista de objetos com "numero", "duracao_seg", "narracao", "visual", "texto_na_tela", "transicao"
+- "duracao_seg" deve ser coerente com a narração (cerca de 2,5 palavras por segundo)"""
 
-    resposta = client.chat.completions.create(
-        model=MODELO,
-        messages=[
+    mensagens = [
+        {
+            "role": "system",
+            "content": "Você é roteirista de vídeos de finanças e criptomoedas para YouTube. Sempre responde com JSON válido.",
+        },
+        {"role": "user", "content": prompt},
+    ]
+    # O modelo costuma entregar narração curta demais; pede expansão até 2 vezes.
+    for _ in range(3):
+        resposta = client.chat.completions.create(
+            model=MODELO,
+            messages=mensagens,
+            response_format={"type": "json_object"},
+            temperature=0.7,
+        )
+        conteudo = resposta.choices[0].message.content
+        r = json.loads(conteudo)
+        palavras = contar_palavras(r)
+        if palavras >= fmt["min_palavras"]:
+            break
+        mensagens += [
+            {"role": "assistant", "content": conteudo},
             {
-                "role": "system",
-                "content": "Você é roteirista de vídeos de finanças e criptomoedas para YouTube. Sempre responde com JSON válido.",
+                "role": "user",
+                "content": f"A narração somada tem {palavras} palavras; o mínimo é {fmt['min_palavras']}. "
+                f"Reescreva com {fmt['por_cena']}, explicando melhor cada ponto com o que está no post "
+                "(sem inventar dados). Ajuste duracao_seg. Retorne o mesmo JSON completo.",
             },
-            {"role": "user", "content": prompt},
-        ],
-        response_format={"type": "json_object"},
-        temperature=0.7,
-    )
-    return json.loads(resposta.choices[0].message.content)
+        ]
+    return r
+
+
+def contar_palavras(r: dict) -> int:
+    return sum(len(c["narracao"].split()) for c in r["cenas"])
+
+
+def montar_prompt_design(r: dict, formato: str) -> str:
+    """Prompt autocontido para o Claude Design, montado a partir das cenas."""
+    fmt = FORMATOS[formato]
+    total = sum(int(c["duracao_seg"]) for c in r["cenas"])
+    linhas = [
+        f'Crie um vídeo animado para YouTube chamado "{r["titulo_youtube"]}".',
+        "",
+        f"- Proporção: {fmt['proporcao']}",
+        f"- Duração total: cerca de {total} segundos, em {len(r['cenas'])} cenas",
+        "- Estilo: fintech/cripto, fundo escuro (#0b0e11 a #1e2329), destaque dourado #f0b90b, texto claro #eaecef",
+        "- Tipografia: sans-serif geométrica (ex.: Inter ou Montserrat), títulos em negrito, textos na tela curtos e grandes",
+        "- Animação: movimentos suaves, gráficos e ícones vetoriais, sem rostos de pessoas reais nem logos de marcas inventados",
+        "- A narração será gerada à parte por IA de voz e adicionada na edição; não inclua áudio, só sincronize a duração de cada cena com o texto dela",
+        "",
+        "Cenas:",
+    ]
+    for c in r["cenas"]:
+        linhas += [
+            "",
+            f"Cena {c['numero']} ({c['duracao_seg']}s)",
+            f"- Narração: {c['narracao']}",
+            f"- Visual: {c['visual']}",
+            f"- Texto na tela: {c['texto_na_tela']}",
+            f"- Transição para a próxima: {c.get('transicao', 'corte suave')}",
+        ]
+    return "\n".join(linhas)
 
 
 def montar_markdown(post: dict, r: dict, formato: str) -> str:
@@ -110,7 +165,13 @@ def montar_markdown(post: dict, r: dict, formato: str) -> str:
             f"**Visual:** {c['visual']}",
             f"**Texto na tela:** {c['texto_na_tela']}",
         ]
-    linhas += ["", "## PROMPT PARA O CLAUDE DESIGN", "", r["prompt_claude_design"], ""]
+    linhas += [
+        "",
+        f"## NARRAÇÃO COMPLETA (para a IA de voz, {contar_palavras(r)} palavras)",
+        "",
+        "\n\n".join(c["narracao"] for c in r["cenas"]),
+    ]
+    linhas += ["", "## PROMPT PARA O CLAUDE DESIGN", "", montar_prompt_design(r, formato), ""]
     return "\n".join(linhas)
 
 
